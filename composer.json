@@ -1,0 +1,28 @@
+{
+    "name": "work/www",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app",
+            "app\\database\\": "app/database",
+            "app\\database\\models\\": "app/database/models",
+            "app\\database\\models\\select\\": "app/database/models/select",
+            "app\\controllers\\": "app/controllers",
+            "app\\views\\": "app/views",
+            "app\\routes\\": "app/routes",
+            "app\\support\\": "app/support"
+        },
+        "files":[
+        
+        ]
+    },
+    "authors": [
+        {
+            "name": "Ruan Higor",
+            "email": "ruanhigor123@gmail.com"
+        }
+    ],
+    "require": {
+        "league/plates": "^3.5",
+        "vlucas/phpdotenv": "^5.5"
+    }
+}

@@ -1,0 +1,10 @@
+*{
+    font-family: 'Poppins', sans-serif;
+  }
+main{
+    min-height: 90vh;
+    padding: 1rem;
+}
+.card {
+    margin-bottom: 15px;
+}

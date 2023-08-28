@@ -1,0 +1,10 @@
+# Ativar o módulo de reescrita
+RewriteEngine On
+
+# Redirecionar a raiz do domínio para o arquivo "index.php" dentro de "/assets/"
+RewriteRule ^$ /public/index.php [L]
+
+# Redirecionar todas as outras solicitações para o arquivo "index.php" dentro de "/assets/"
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /public/index.php [L]

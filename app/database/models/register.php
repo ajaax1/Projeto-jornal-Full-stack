@@ -4,6 +4,7 @@ use app\database\Connection;
 use app\support\EmailVerify;
 use app\support\PasswordConfirm;
 use app\support\GetMessages;
+use app\support\NameFilter;
 use PDOException;
 class Register extends Connection
 {   
@@ -17,29 +18,12 @@ class Register extends Connection
             header("Location:/register");
         } 
         else{
-
-            $this->name = ucfirst($_POST['name']);
+            $this->name = $_POST['name'];
             $this->email = $_POST['email'];
             $this->password = $_POST['password'];
             $this->password2 = $_POST['password2'];
-            if(PasswordConfirm::exec($this->password,$this->password2)){
-                $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-            }
-            else{
-                GetMessages::getFlash('error_message','Passwords do not match');
-                header("Location:/register");
-                die;
-            }
-            if (EmailVerify::exists($this->email)) {
-                GetMessages::getFlash('error_message','Email in use');
-                header("Location:/register");
-                die;
-            }
-            else{
-                $this->insert();
-            }
-        } 
-           
+
+        }     
     }
 
     private function insert(){

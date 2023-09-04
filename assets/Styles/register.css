@@ -1,0 +1,17 @@
+
+#requirements {
+  margin-top: 10px;
+  color: red;
+  display: none;
+  margin-bottom: 1rem;
+}
+#requirements2 {
+  margin-top: 10px;
+  color: red;
+  display: none;
+  margin-bottom: 1rem;    
+}
+
+.valid {
+  color: green;
+}

@@ -12,14 +12,15 @@ class Login extends Connection
 {
     private $email;
     private $password;
-
+    public function __construct($email,$password) {
+        $this->email = $email;
+        $this->password = $password;
+    }
     public function getValues(){
-        if(empty($_POST['email']) || empty($_POST['password'])){
+        if(empty( $this->email) || empty( $this->password)){
             GetMessages::getFlash('error_message','Some field is missing');
             header("Location:/login");
         }else{
-            $this->email = $_POST['email'];
-            $this->password = $_POST['password'];
             $this->insert();
         }
         
@@ -35,7 +36,7 @@ class Login extends Connection
             $user = $stmt_user->fetch(PDO::FETCH_ASSOC); 
         
             if ($user && password_verify($this->password, $user['password'])) {
-                $_SESSION['name'] = GetFirstName::get($user['name']);
+                $_SESSION['name'] = $user['name'];
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['logged'] = true;

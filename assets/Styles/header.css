@@ -49,7 +49,7 @@
   .button:hover {    
     color: white;
   }
-  .material-symbols-outlined {
+  .span {
     display: none;
   }
   section {
@@ -75,7 +75,6 @@
     .menu {
       display: block;
       cursor: pointer;
-       
     }
     
     nav .flex2 {
@@ -85,7 +84,7 @@
     .input1 {
       display: none; 
     }
-    .material-symbols-outlined {
+    .span {
       display: block; 
     }
     

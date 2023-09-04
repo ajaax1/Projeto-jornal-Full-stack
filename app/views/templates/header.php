@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="../../../assets/Styles/header.css">
+  <link rel="stylesheet" href="../../../assets/styles/header.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,7 +24,7 @@
         <a class="button" style="border-bottom-right-radius:10px;" href="/login">Login</a>
       </div>
     </div>
-    <span class="material-symbols-outlined menu" id="menu" onclick="menuShow()">
+    <span class="span material-symbols-outlined menu" id="menu" onclick="menuShow()">
       menu
     </span>
   </nav>

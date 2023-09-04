@@ -15,6 +15,7 @@ if (isset($_SESSION['error_message'])) {
 
         <form action="/createNews" method="POST" enctype="multipart/form-data">
             <H1>Create News</H1>
+            <p>Fill in the first 3 fields obligatorily</p>
 
             <div class="input-group mb-3">
                 <input type="file" name="image" accept="image/*" class="form-control" placeholder="Image" aria-label="Image" aria-describedby="basic-addon1">

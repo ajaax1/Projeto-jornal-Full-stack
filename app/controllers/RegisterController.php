@@ -10,7 +10,7 @@ class RegisterController extends Controll
     }
     public function exec()
     {
-        $function = new Register;
+        $function = new Register($_POST['name'],$_POST['name2'],$_POST['email'],$_POST['password'],$_POST['password2'],);
         return $function->getValues();
     }
    

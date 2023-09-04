@@ -11,7 +11,7 @@ class LoginController extends Controll
     }
     public function exec()
     {
-        $login = new Login;
+        $login = new Login($_POST['email'],$_POST['password']);
         return $login->getValues();
     }
 }

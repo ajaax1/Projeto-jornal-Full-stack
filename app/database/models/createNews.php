@@ -11,17 +11,20 @@ class createNews extends Connection
 {
     private $title;
     private $date;
+    private $hour;
     private $destination;
     private $paragraphs;
 
     public function getValues()
     {
-        if(empty($_POST['title']) || empty($_POST['paragraphs1']) || empty($_FILES["image"])) {
-            GetMessages::getFlash('error_message', 'fill in the inputs');
+        if(empty($_POST['title']) || empty($_POST['paragraphs1']) || empty($_FILES["image"]["name"])) {
+            GetMessages::getFlash('error_message', 'Fill in the inputs');
             header("Location:/createNews");
         } else {
+            date_default_timezone_set('America/New_York');
             $this->title =  $_POST['title'];
             $this->date = date('Y/m/d');
+            $this->hour = date("h:i A");
             $uploadDir = "../assets/img/";
             $tempFile = $_FILES["image"]["tmp_name"];
             $image = $_FILES["image"]["name"];
@@ -39,11 +42,12 @@ class createNews extends Connection
     {
         try {
         $pdo = Connection::connect();
-        $sql = "INSERT INTO news (title, paragraphs1, paragraphs2, paragraphs3, paragraphs4, paragraphs5, paragraphs6, date, id_user,image)
-                VALUES (:title, :paragraphs1, :paragraphs2, :paragraphs3, :paragraphs4, :paragraphs5, :paragraphs6, :date, :id,:image)";
+        $sql = "INSERT INTO news (title, paragraphs1, paragraphs2, paragraphs3, paragraphs4, paragraphs5, paragraphs6, date,hour, id_user,image)
+                VALUES (:title, :paragraphs1, :paragraphs2, :paragraphs3, :paragraphs4, :paragraphs5, :paragraphs6, :date,:hour , :id,:image)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':title', $this->title);
         $stmt->bindParam(':date', $this->date);
+        $stmt->bindParam(':hour', $this->hour);
         $stmt->bindParam(':image', $this->destination);
         for ($i = 1; $i <= 6; $i++) {
             $stmt->bindParam(":paragraphs$i", $this->paragraphs[$i - 1]);

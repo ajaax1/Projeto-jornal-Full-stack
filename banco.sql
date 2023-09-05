@@ -1,5 +1,10 @@
 -- phpMyAdmin SQL Dump
-
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Tempo de geração: 04-Set-2023 às 18:25
+-- Versão do servidor: 8.0.31
 -- versão do PHP: 8.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -13,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `news`
+-- Banco de dados: `banco`
 --
 
 -- --------------------------------------------------------
@@ -34,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `paragraphs6` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `image` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `date` date NOT NULL,
+  `hour` varchar(10) NOT NULL,
   `id_user` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
@@ -48,7 +54,8 @@ CREATE TABLE IF NOT EXISTS `news` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name2` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),

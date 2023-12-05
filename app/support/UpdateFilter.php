@@ -1,19 +1,37 @@
 <?php 
 namespace app\support;
+use app\routes\Uri;
 use app\support\EmailVerify;
 use app\support\GetMessages;
 use app\support\PasswordConfirm;
 
-class RegisterFilter {
+class UpdateFilter {
+
+    private static $url;
+
+    public static function getUrl() {
+        $id = UriId::exec();
+        if(str_contains(Uri::get(),'update')){
+            self::$url = "/admin/update/$id";
+            return self::$url;
+        }
+        else{
+            self::$url = "/admin/" . $_SESSION['name'] . "/" . $_SESSION['id'];
+            return self::$url;
+        }      
+    }
+
     public static function name(string $name)
     {
         if (preg_match('/[^A-Za-z]/', $name)) {
             GetMessages::getFlash('error_message', 'The name field must not exceed 15 characters');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit;
         } elseif (strlen($name) > 15) {
             GetMessages::getFlash('error_message', 'The name field must not exceed 15 characters');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit;
         }
         
@@ -23,12 +41,14 @@ class RegisterFilter {
     {
         if (preg_match('/[^A-Za-z]/', $name2)) {
             GetMessages::getFlash('error_message', 'The name field only accepts letters');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit;
         }
         elseif (strlen($name2) > 15) {
             GetMessages::getFlash('error_message', 'The name field must not exceed 15 characters');
-            header("Location: /admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit;
         }
         
@@ -39,7 +59,8 @@ class RegisterFilter {
     {   if(filter_var($email,FILTER_VALIDATE_EMAIL)){
             if (EmailVerify::exists($email)) {
                 GetMessages::getFlash('error_message', 'Email is already in use');
-                header("Location:/admin/register");
+                $url = self::getUrl();
+                header('Location:'.$url);
                 exit;
             }
             else{
@@ -48,33 +69,38 @@ class RegisterFilter {
         }
         else{
             GetMessages::getFlash('error_message', 'The email is in the wrong format');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit;
         }
     }
     public static function password($password, $password2) {
         if ($password !== $password2) {
             GetMessages::getFlash('error_message', 'Passwords are not the same');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit; 
         }
     
         $length = strlen($password);
         if ($length < 7) {
             GetMessages::getFlash('error_message', 'Password should be at least 7 characters long');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit; 
         }
     
         if (!preg_match('/[a-z]/', $password) || !preg_match('/[A-Z]/', $password)) {
             GetMessages::getFlash('error_message', 'Password should contain both lowercase and uppercase letters');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit; 
         }
     
         if (!preg_match('/\d/', $password)) {
             GetMessages::getFlash('error_message', 'Password should contain at least one number');
-            header("Location:/admin/register");
+            $url = self::getUrl();
+            header('Location:'.$url);
             exit; 
         }
     

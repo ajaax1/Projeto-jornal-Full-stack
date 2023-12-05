@@ -11,19 +11,11 @@
 </head>
 <body>
     <header> 
-        <?php
-        if (!isset($_SESSION['logged'])) {
-            $this->insert('templates/header');
-        } else {
-            $this->insert('templates/headerUser');
-        }
-        ?>
+    <?php 
+        $this->insert('templates/header');
+    ?>
     </header>
-        
-    
         <?=$this->section('content')?>
-    
-
     <footer>
         <?=$this->insert('templates/footer') ?>
     </footer>

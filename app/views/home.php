@@ -1,5 +1,5 @@
 <?php
-use app\database\models\select\DefaultSelect;
+use app\database\models\querys\DefaultSelect;
 $this->layout('master', ['title'=>$title]);
 if (isset($_SESSION['error_message'])) {
     $error_message = $_SESSION['error_message'];
